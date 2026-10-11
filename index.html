@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGNITE 2026 - Invitation Card | Dr. Pranita Chitnis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Animated Background Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Floating Emojis Stream -->
+  <div class="emoji-bubble-container" id="emoji-container"></div>
+
+  <!-- Audio Toggle & Top Controls -->
+  <div class="top-bar">
+    <div class="dept-badge">
+      <span class="icon">🏛️</span>
+      <span>Department of Commerce & Management</span>
+    </div>
+    <div class="action-dock">
+      <button id="music-btn" class="dock-btn" title="Toggle Festive Music">
+        <span id="music-icon">🎵</span>
+        <span id="music-label">Party Music: Off</span>
+      </button>
+      <button id="confetti-btn" class="dock-btn fire-glow" title="Burst Celebrations">
+        <span>🎉</span>
+        <span>Celebrate!</span>
+      </button>
+      <button id="print-btn" class="dock-btn" onclick="window.print()" title="Print / Save PDF">
+        <span>📜</span>
+        <span>Save / Print</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <main class="page-wrapper">
+    <!-- Envelope Wax Seal Intro Modal (Option to uncover card) -->
+    <div class="intro-curtain" id="intro-curtain">
+      <div class="envelope-box">
+        <div class="royal-crest">🎓 ✨ 💼</div>
+        <p class="envelope-dept">DEPARTMENT OF COMMERCE & MANAGEMENT</p>
+        <h2 class="envelope-title">Special Invitation For</h2>
+        <div class="envelope-recipient">
+          <span class="crown">👑</span>
+          <h3>Dr. Pranita Chitnis</h3>
+          <p class="role">Head of Department (HOD)</p>
+        </div>
+        <div class="event-stamp">
+          <span class="fire-flame">🔥</span>
+          <span class="ignite-stamp-text">IGNITE 2026</span>
+          <span class="fire-flame">🔥</span>
+        </div>
+        <button id="open-envelope-btn" class="open-card-btn">
+          <span class="seal-icon">💌</span>
+          <span>Click to Open Royal Invitation</span>
+          <span class="sparkles">✨</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- The 3D Interactive Invitation Card -->
+    <div class="card-perspective-container">
+      <article class="invitation-card" id="invitation-card">
+        
+        <!-- Glowing Card Border Gradients & Ornamentation -->
+        <div class="card-glow-layer"></div>
+        <div class="card-corner-ornament top-left"></div>
+        <div class="card-corner-ornament top-right"></div>
+        <div class="card-corner-ornament bottom-left"></div>
+        <div class="card-corner-ornament bottom-right"></div>
+
+        <!-- Inner Content Border Frame -->
+        <div class="card-inner">
+          
+          <!-- Header Branding -->
+          <header class="card-header">
+            <div class="college-ribbon">
+              <span class="sparkle-star">✨</span>
+              <span>ANNUAL FRESHERS CELEBRATION 2026</span>
+              <span class="sparkle-star">✨</span>
+            </div>
+            
+            <p class="sub-dept">Department of Commerce & Management Warmly Presents</p>
+            
+            <div class="title-lockup">
+              <div class="fire-badge">
+                <span class="fire-ico">🔥</span>
+                <span class="badge-tag">FRESHERS PARTY</span>
+                <span class="fire-ico">🔥</span>
+              </div>
+              <h1 class="event-title">
+                <span class="word-ignite">IGNITE</span>
+                <span class="year-spark">- 2026</span>
+              </h1>
+              <p class="event-tagline">"Sparking Ambitions, Igniting Brilliance & Celebrating New Horizons!" 🚀✨</p>
+            </div>
+          </header>
+
+          <!-- VIP Honoree Section: Dr. Pranita Chitnis -->
+          <section class="honoree-section">
+            <div class="honoree-photo-wrapper">
+              <div class="photo-rings-halo"></div>
+              <div class="photo-pulse-ring"></div>
+              <div class="photo-container">
+                <img src="hod_photo.jpg" alt="Dr. Pranita Chitnis - HOD Commerce & Management" class="hod-img" id="hod-photo">
+                <div class="photo-glow-rim"></div>
+              </div>
+              <div class="dignitary-badge">
+                <span class="star-icon">🌟</span>
+                <span>CHIEF PATRON & GUIDE</span>
+                <span class="star-icon">🌟</span>
+              </div>
+            </div>
+
+            <div class="honoree-details">
+              <span class="salutation">Cordially & Respectfully Invited</span>
+              <h2 class="hod-name">Dr. Pranita Chitnis</h2>
+              <div class="hod-designation">
+                <span class="deg-pill">👩‍🏫 Head of Department</span>
+                <span class="deg-pill">📊 Commerce & Management</span>
+              </div>
+              <p class="honoree-quote">
+                “Your vision, mentorship, and inspiring grace lead our path to brilliance. We humbly request the honor of your esteemed presence to ignite the spirit of the Freshers Batch 2026 with your blessings!” 🙏✨
+              </p>
+            </div>
+          </section>
+
+          <!-- Invitation Key Info Grid -->
+          <section class="event-details-grid">
+            <div class="detail-card">
+              <div class="detail-icon-box date-box">
+                <span class="box-emoji">📅</span>
+              </div>
+              <div class="detail-meta">
+                <span class="detail-label">DAY & DATE</span>
+                <strong class="detail-val">Saturday, Oct 24, 2026</strong>
+                <span class="detail-sub">Mark your calendar! ⏰</span>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <div class="detail-icon-box time-box">
+                <span class="box-emoji">⏳</span>
+              </div>
+              <div class="detail-meta">
+                <span class="detail-label">REPORTING TIME</span>
+                <strong class="detail-val">10:30 AM Onwards</strong>
+                <span class="detail-sub">Followed by Grand High Tea ☕</span>
+              </div>
+            </div>
+
+            <div class="detail-card full-width">
+              <div class="detail-icon-box venue-box">
+                <span class="box-emoji">📍</span>
+              </div>
+              <div class="detail-meta">
+                <span class="detail-label">CELEBRATION VENUE</span>
+                <strong class="detail-val">The Grand College Auditorium & Convention Centre</strong>
+                <span class="detail-sub">Main Campus | Stage of Lights & Stars 🌟</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Event Highlights / Attractions -->
+          <section class="highlights-section">
+            <h3 class="highlights-title">
+              <span>🎭 FESTIVAL HIGHLIGHTS & ATTRACTIONS 🎶</span>
+            </h3>
+            <div class="highlights-chips">
+              <div class="chip"><span>💃</span> Electrifying Dance Battles</div>
+              <div class="chip"><span>🎤</span> Melodious Band & Vocals</div>
+              <div class="chip"><span>👑</span> Mr. & Ms. Fresher 2026</div>
+              <div class="chip"><span>📸</span> Red Carpet 360° Photo Booth</div>
+              <div class="chip"><span>🍱</span> Grand Lunch & Celebration Cake</div>
+              <div class="chip"><span>🎁</span> Fun Games & Surprise Awards</div>
+            </div>
+          </section>
+
+          <!-- Live Countdown Section -->
+          <section class="countdown-bar">
+            <div class="countdown-title">
+              <span>🔥 COUNTDOWN TO IGNITE 2026 🔥</span>
+            </div>
+            <div class="timer-display" id="timer-display">
+              <div class="time-unit">
+                <span class="unit-num" id="days">12</span>
+                <span class="unit-name">Days</span>
+              </div>
+              <span class="timer-colon">:</span>
+              <div class="time-unit">
+                <span class="unit-num" id="hours">08</span>
+                <span class="unit-name">Hours</span>
+              </div>
+              <span class="timer-colon">:</span>
+              <div class="time-unit">
+                <span class="unit-num" id="mins">45</span>
+                <span class="unit-name">Mins</span>
+              </div>
+              <span class="timer-colon">:</span>
+              <div class="time-unit">
+                <span class="unit-num" id="secs">30</span>
+                <span class="unit-name">Secs</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Interactive RSVP / Blessing Action -->
+          <section class="blessing-action-area">
+            <div class="cta-row">
+              <button id="accept-invitation-btn" class="blessing-btn">
+                <span class="btn-icon">🙏</span>
+                <span class="btn-txt">Bless Our Freshers & Accept Invitation</span>
+                <span class="btn-sparkle">💖</span>
+              </button>
+            </div>
+            <p class="rsvp-note">
+              Warmly Invited by: <strong>Seniors & Organizing Committee (Commerce & Management)</strong>
+            </p>
+          </section>
+
+          <!-- Card Footer Signature -->
+          <footer class="card-footer">
+            <div class="footer-emojis">🎓 💼 💐 🥂 🎉 🌟 🎶 💃 🔥 🚀</div>
+            <p class="dress-code">Dress Code: <strong>Glamorous Ethnic / Formal Elegance ✨</strong></p>
+            <p class="copyright-tag">Department of Commerce & Management • IGNITE 2026 Freshers Bash</p>
+          </footer>
+
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- Interactive Blessing Popup Modal -->
+  <div class="blessing-modal-backdrop" id="blessing-modal">
+    <div class="blessing-modal-box">
+      <div class="modal-crown">👑 💖 🙏</div>
+      <h3 class="modal-title">Honored With Gratitude!</h3>
+      <p class="modal-name">Respected Dr. Pranita Chitnis Ma'am,</p>
+      <p class="modal-msg">
+        Your gracious presence means the world to every student! The entire Department of Commerce & Management eagerly awaits welcoming you with grand applause and highest respect at <strong>IGNITE - 2026</strong>.
+      </p>
+      <div class="modal-flames">🔥 ✨ 🎉 ✨ 🔥</div>
+      <button class="modal-close-btn" id="modal-close-btn">See You At The Celebration! 🎊</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

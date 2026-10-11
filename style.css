@@ -1,0 +1,1214 @@
+/* ==========================================================================
+   IGNITE 2026 - ROYAL INVITATION CARD STYLESHEET
+   Dedicated to HOD Dr. Pranita Chitnis (Commerce & Management)
+   ========================================================================== */
+
+:root {
+  --bg-primary: #0a0714;
+  --bg-secondary: #130d24;
+  --card-bg: rgba(20, 13, 38, 0.88);
+  --card-border: rgba(255, 215, 0, 0.35);
+  
+  --gold-glow: #ffd700;
+  --gold-light: #fff3a8;
+  --gold-deep: #c59b27;
+  --gold-gradient: linear-gradient(135deg, #fff2a3 0%, #ffd700 50%, #b8860b 100%);
+  
+  --fire-red: #ff3333;
+  --fire-orange: #ff7700;
+  --fire-yellow: #ffcc00;
+  --fire-gradient: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+  --ignite-gradient: linear-gradient(135deg, #ff3b30 0%, #ff9500 50%, #ffd60a 100%);
+  
+  --purple-accent: #9d4edd;
+  --purple-glow: rgba(157, 78, 221, 0.35);
+  
+  --text-main: #f8f9fa;
+  --text-muted: #d0c8e8;
+  --text-dim: #9b90b8;
+  
+  --font-royal: 'Cinzel', serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Outfit', sans-serif;
+  
+  --shadow-gold: 0 0 25px rgba(255, 215, 0, 0.45);
+  --shadow-fire: 0 0 35px rgba(255, 85, 0, 0.5);
+  --glass-blur: blur(18px);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+/* Background Animated Canvas */
+#ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Floating Emojis Stream */
+.emoji-bubble-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floating-emoji {
+  position: absolute;
+  bottom: -60px;
+  user-select: none;
+  font-size: 1.8rem;
+  filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.6));
+  animation: floatUpwards linear forwards;
+}
+
+@keyframes floatUpwards {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-115vh) rotate(360deg) scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* Top Sticky Navigation Bar */
+.top-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: rgba(10, 7, 20, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.dept-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.action-dock {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.dock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background: rgba(30, 20, 55, 0.8);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dock-btn:hover {
+  background: rgba(55, 35, 95, 0.9);
+  border-color: var(--gold-glow);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.dock-btn.fire-glow {
+  background: linear-gradient(135deg, rgba(255, 59, 48, 0.2), rgba(255, 149, 0, 0.3));
+  border-color: rgba(255, 149, 0, 0.6);
+}
+
+.dock-btn.fire-glow:hover {
+  box-shadow: var(--shadow-fire);
+}
+
+/* Page Layout */
+.page-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 65px);
+  padding: 30px 16px 60px 16px;
+}
+
+/* Envelope Intro Curtain */
+.intro-curtain {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(32, 18, 58, 0.98), rgba(8, 4, 16, 0.99));
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(25px);
+}
+
+.intro-curtain.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.08) translateY(-40px);
+}
+
+.envelope-box {
+  width: 90%;
+  max-width: 520px;
+  background: linear-gradient(145deg, rgba(35, 22, 65, 0.95), rgba(15, 10, 30, 0.98));
+  border: 2px solid rgba(255, 215, 0, 0.6);
+  border-radius: 28px;
+  padding: 42px 30px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.35);
+  animation: envelopePulse 3s infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes envelopePulse {
+  0% { transform: translateY(0); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.3); }
+  100% { transform: translateY(-6px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 50px rgba(255, 150, 0, 0.45); }
+}
+
+.envelope-box::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 60%);
+  animation: rotateLight 12s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotateLight {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.royal-crest {
+  font-size: 2.8rem;
+  margin-bottom: 14px;
+  letter-spacing: 6px;
+  filter: drop-shadow(0 0 12px var(--gold-glow));
+}
+
+.envelope-dept {
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  color: var(--gold-light);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.envelope-title {
+  font-family: var(--font-royal);
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.envelope-recipient {
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  padding: 16px 20px;
+  border-radius: 18px;
+  margin-bottom: 24px;
+}
+
+.envelope-recipient .crown {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.envelope-recipient h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--gold-light);
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+.envelope-recipient .role {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.event-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(255, 59, 48, 0.15);
+  border: 1px dashed rgba(255, 120, 0, 0.7);
+}
+
+.ignite-stamp-text {
+  font-family: var(--font-royal);
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #ff9d00;
+  text-shadow: 0 0 10px rgba(255, 120, 0, 0.8);
+}
+
+.open-card-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 28px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00, #ff3b30);
+  border: none;
+  border-radius: 999px;
+  color: #1a0800;
+  font-family: var(--font-royal);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(255, 140, 0, 0.6);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.open-card-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 40px rgba(255, 215, 0, 0.8);
+}
+
+/* ==========================================================================
+   THE 3D INVITATION CARD
+   ========================================================================== */
+
+.card-perspective-container {
+  perspective: 1400px;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.invitation-card {
+  position: relative;
+  background: var(--card-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.85),
+    0 0 45px rgba(255, 215, 0, 0.25),
+    inset 0 0 25px rgba(255, 215, 0, 0.15);
+  border: 2px solid rgba(255, 215, 0, 0.55);
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+/* Glowing Border Rim */
+.card-glow-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 36px;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.25), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ornamental Corners */
+.card-corner-ornament {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  z-index: 5;
+  pointer-events: none;
+  border: 3px solid var(--gold-glow);
+}
+
+.card-corner-ornament.top-left {
+  top: 18px;
+  left: 18px;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: 18px;
+}
+
+.card-corner-ornament.top-right {
+  top: 18px;
+  right: 18px;
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 18px;
+}
+
+.card-corner-ornament.bottom-left {
+  bottom: 18px;
+  left: 18px;
+  border-right: none;
+  border-top: none;
+  border-bottom-left-radius: 18px;
+}
+
+.card-corner-ornament.bottom-right {
+  bottom: 18px;
+  right: 18px;
+  border-left: none;
+  border-top: none;
+  border-bottom-right-radius: 18px;
+}
+
+.card-inner {
+  position: relative;
+  z-index: 2;
+  border: 1px dashed rgba(255, 215, 0, 0.35);
+  border-radius: 26px;
+  padding: 38px 32px;
+  background: linear-gradient(180deg, rgba(28, 18, 52, 0.7) 0%, rgba(13, 8, 25, 0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Header Section */
+.card-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.college-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 20px;
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.1));
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  border-radius: 999px;
+  font-family: var(--font-royal);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold-light);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.sub-dept {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.title-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.fire-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  background: rgba(255, 59, 48, 0.16);
+  border: 1px solid rgba(255, 69, 0, 0.5);
+  border-radius: 999px;
+}
+
+.badge-tag {
+  font-family: var(--font-royal);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: #ff9100;
+}
+
+.event-title {
+  font-family: var(--font-royal);
+  font-size: clamp(2.8rem, 7vw, 4.8rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 3px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 4px 0;
+}
+
+.word-ignite {
+  background: linear-gradient(135deg, #fff7ad 0%, #ffa500 45%, #ff2a2a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 25px rgba(255, 80, 0, 0.75));
+  animation: igniteShimmer 3s ease-in-out infinite alternate;
+}
+
+@keyframes igniteShimmer {
+  0% { filter: drop-shadow(0 0 18px rgba(255, 100, 0, 0.7)); }
+  100% { filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.9)); }
+}
+
+.year-spark {
+  color: #ffd700;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  font-weight: 800;
+}
+
+.event-tagline {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--gold-light);
+  max-width: 620px;
+  line-height: 1.45;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   HONOREE SECTION: DR. PRANITA CHITNIS
+   ========================================================================== */
+
+.honoree-section {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  background: linear-gradient(145deg, rgba(45, 26, 75, 0.65), rgba(20, 12, 38, 0.85));
+  border: 1.5px solid rgba(255, 215, 0, 0.45);
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.honoree-section::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.honoree-photo-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-container {
+  position: relative;
+  width: 175px;
+  height: 220px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 3px solid var(--gold-glow);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 0 10px 25px rgba(0, 0, 0, 0.8);
+  background: #1b122c;
+  z-index: 2;
+}
+
+.hod-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%; /* Perfect framing for Dr. Pranita Chitnis */
+  transition: transform 0.4s ease;
+  filter: contrast(1.05) saturate(1.08) brightness(1.02);
+}
+
+.photo-container:hover .hod-img {
+  transform: scale(1.06);
+}
+
+.photo-glow-rim {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.4);
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+.photo-rings-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 260px;
+  border: 1px dashed rgba(255, 215, 0, 0.5);
+  border-radius: 30px;
+  animation: rotateHalo 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotateHalo {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.photo-pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 195px;
+  height: 235px;
+  border: 2px solid rgba(255, 140, 0, 0.5);
+  border-radius: 26px;
+  animation: pulseGlow 2.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.3; }
+  100% { transform: translate(-50%, -50%) scale(1.04); opacity: 0.8; box-shadow: 0 0 25px rgba(255, 140, 0, 0.6); }
+}
+
+.dignitary-badge {
+  position: absolute;
+  bottom: -14px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  border-radius: 999px;
+  color: #1a0800;
+  font-size: 0.68rem;
+  font-family: var(--font-royal);
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.honoree-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.salutation {
+  font-family: var(--font-royal);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.salutation::before {
+  content: "✨";
+}
+
+.hod-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.8vw, 2.7rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  background: linear-gradient(120deg, #ffffff 40%, #ffeaa7 70%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+}
+
+.hod-designation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.deg-pill {
+  padding: 4px 12px;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+
+.honoree-quote {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--text-muted);
+  border-left: 3px solid var(--gold-glow);
+  padding-left: 14px;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   EVENT KEY INFO GRID
+   ========================================================================== */
+
+.event-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.detail-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  border-radius: 18px;
+  transition: all 0.25s ease;
+}
+
+.detail-card:hover {
+  background: rgba(255, 215, 0, 0.08);
+  border-color: rgba(255, 215, 0, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.detail-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.detail-icon-box {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.date-box {
+  background: linear-gradient(135deg, rgba(255, 120, 0, 0.2), rgba(255, 215, 0, 0.2));
+}
+
+.time-box {
+  background: linear-gradient(135deg, rgba(157, 78, 221, 0.25), rgba(255, 215, 0, 0.2));
+}
+
+.venue-box {
+  background: linear-gradient(135deg, rgba(255, 59, 48, 0.2), rgba(255, 140, 0, 0.2));
+}
+
+.detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.detail-label {
+  font-family: var(--font-royal);
+  font-size: 0.72rem;
+  letter-spacing: 1.8px;
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+.detail-val {
+  font-size: 1.15rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.detail-sub {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   HIGHLIGHTS SECTION
+   ========================================================================== */
+
+.highlights-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.highlights-title {
+  font-family: var(--font-royal);
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  color: var(--gold-light);
+}
+
+.highlights-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(45, 25, 75, 0.5);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: var(--gold-glow);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.25);
+}
+
+/* ==========================================================================
+   COUNTDOWN TIMER
+   ========================================================================== */
+
+.countdown-bar {
+  background: linear-gradient(90deg, rgba(255, 59, 48, 0.1), rgba(255, 140, 0, 0.15), rgba(255, 215, 0, 0.1));
+  border: 1px solid rgba(255, 140, 0, 0.4);
+  border-radius: 20px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.countdown-title {
+  font-family: var(--font-royal);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ffaa00;
+  text-shadow: 0 0 10px rgba(255, 140, 0, 0.6);
+}
+
+.timer-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 55px;
+}
+
+.unit-num {
+  font-family: var(--font-sans);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  line-height: 1;
+}
+
+.unit-name {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.timer-colon {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--gold-glow);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   BLESSING ACTION / RSVP
+   ========================================================================== */
+
+.blessing-action-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.cta-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.blessing-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 36px;
+  background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ff3b30 100%);
+  border: none;
+  border-radius: 999px;
+  color: #1a0800;
+  font-family: var(--font-royal);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(255, 140, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.blessing-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 45px rgba(255, 140, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+.blessing-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.rsvp-note {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.rsvp-note strong {
+  color: var(--gold-light);
+}
+
+/* ==========================================================================
+   CARD FOOTER
+   ========================================================================== */
+
+.card-footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+  padding-top: 20px;
+}
+
+.footer-emojis {
+  font-size: 1.3rem;
+  letter-spacing: 6px;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+.dress-code {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.dress-code strong {
+  color: var(--gold-light);
+}
+
+.copyright-tag {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   BLESSING MODAL POPUP
+   ========================================================================== */
+
+.blessing-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 4, 18, 0.85);
+  backdrop-filter: blur(16px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.blessing-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.blessing-modal-box {
+  background: linear-gradient(150deg, rgba(38, 22, 68, 0.98), rgba(16, 9, 32, 0.98));
+  border: 2px solid var(--gold-glow);
+  border-radius: 28px;
+  padding: 38px 30px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 50px rgba(255, 215, 0, 0.4);
+  transform: scale(0.85) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.blessing-modal-backdrop.active .blessing-modal-box {
+  transform: scale(1) translateY(0);
+}
+
+.modal-crown {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  letter-spacing: 6px;
+}
+
+.modal-title {
+  font-family: var(--font-royal);
+  font-size: 1.8rem;
+  color: var(--gold-light);
+  margin-bottom: 10px;
+}
+
+.modal-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+
+.modal-msg {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.modal-flames {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  letter-spacing: 8px;
+}
+
+.modal-close-btn {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  border: none;
+  border-radius: 999px;
+  color: #1a0800;
+  font-family: var(--font-royal);
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Mobile, Tablet, Desktop)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+  
+  .dept-badge {
+    font-size: 0.78rem;
+    text-align: center;
+  }
+  
+  .card-inner {
+    padding: 26px 16px;
+    gap: 22px;
+  }
+  
+  .honoree-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 22px;
+    padding: 22px 16px;
+  }
+  
+  .photo-container {
+    width: 155px;
+    height: 195px;
+  }
+  
+  .salutation {
+    justify-content: center;
+  }
+  
+  .hod-designation {
+    justify-content: center;
+  }
+  
+  .honoree-quote {
+    border-left: none;
+    border-top: 2px solid var(--gold-glow);
+    padding-left: 0;
+    padding-top: 10px;
+  }
+  
+  .event-details-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .blessing-btn {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ==========================================================================
+   PRINT STYLESHEET (High-Quality Physical / PDF Invitation Card)
+   ========================================================================== */
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+  
+  #ambient-canvas,
+  .emoji-bubble-container,
+  .top-bar,
+  .intro-curtain,
+  .blessing-modal-backdrop,
+  .countdown-bar,
+  .blessing-action-area {
+    display: none !important;
+  }
+  
+  .page-wrapper {
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+  
+  .invitation-card {
+    background: #ffffff !important;
+    border: 3px double #b8860b !important;
+    box-shadow: none !important;
+    color: #111111 !important;
+  }
+  
+  .card-inner {
+    background: #fffdf5 !important;
+    border: 1px solid #c59b27 !important;
+    color: #111111 !important;
+  }
+  
+  .word-ignite, .year-spark, .hod-name {
+    -webkit-text-fill-color: #920d0d !important;
+    color: #920d0d !important;
+  }
+  
+  .college-ribbon, .badge-tag, .detail-label, .salutation, .deg-pill {
+    color: #855307 !important;
+    background: #fff5d7 !important;
+    border-color: #b8860b !important;
+  }
+  
+  .detail-card {
+    background: #fdfaf0 !important;
+    border: 1px solid #d4af37 !important;
+    color: #111111 !important;
+  }
+  
+  .detail-val {
+    color: #111111 !important;
+  }
+  
+  .honoree-section {
+    background: #faf4e6 !important;
+    border: 2px solid #b8860b !important;
+  }
+  
+  .honoree-quote {
+    color: #333333 !important;
+  }
+}
